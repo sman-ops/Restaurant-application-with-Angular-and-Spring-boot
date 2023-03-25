@@ -1,8 +1,6 @@
 package com.spring.restaurant.model;
 
-public class Category {
+public class Category extends CategoryOrder {
 	
-	private Long id;
-	private String categoryName;
 
 }

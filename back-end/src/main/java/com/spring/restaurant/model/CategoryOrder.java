@@ -15,5 +15,7 @@ public class CategoryOrder extends BaseEntity {
 	
 	@Column(name="name")
 	private String name;
+	
+	
 
 }

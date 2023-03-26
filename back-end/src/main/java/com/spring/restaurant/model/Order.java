@@ -2,6 +2,9 @@ package com.spring.restaurant.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -12,7 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="orderfood")
+@Table(name="orders")
 public class Order extends CategoryOrder {
 	
 	@Column(name="price")
@@ -21,5 +24,8 @@ public class Order extends CategoryOrder {
 	private String  img;
 	@Column(name="description")
 	private String description;
+	@ManyToOne
+	@JoinColumn(name="id_Category")
+	private Category category;
 
 }

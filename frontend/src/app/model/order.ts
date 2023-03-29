@@ -4,7 +4,7 @@ export class Order {
   data_create: Date;
   data_update: Date;
   description: string;
-  image: string;
+  img: string;
   price: number;
 
   constructor(
@@ -13,7 +13,7 @@ export class Order {
     data_create: Date,
     data_update: Date,
     description: string,
-    image: string,
+    img: string,
     price: number
   ) {
     this.id = id;
@@ -21,7 +21,7 @@ export class Order {
     this.data_create = data_create;
     this.data_update = data_update;
     this.description = description;
-    this.image = image;
+    this.img = img;
     this.price = price;
   }
 }

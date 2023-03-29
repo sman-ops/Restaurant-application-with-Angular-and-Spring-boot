@@ -2,6 +2,7 @@ package com.spring.restaurant.model;
 
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -16,6 +17,9 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name="category")
 public class Category extends CategoryOrder {
+	
+	@Column(name="categorylogo")
+	private String logo;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy="category")

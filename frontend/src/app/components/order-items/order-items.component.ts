@@ -17,7 +17,9 @@ export class OrderItemsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.finichOrders();
+    this.route.paramMap.subscribe(() => {
+      this.finichOrders();
+    });
   }
 
   finichOrders() {
@@ -39,7 +41,6 @@ export class OrderItemsComponent implements OnInit {
 
   getOrdersByCategoryId(): void {
     let idCategory = this.route.snapshot.paramMap.get('id');
-    alert(idCategory);
     this.orderService.getOrdersByCategoryId(idCategory).subscribe((data) => {
       console.log(data);
       this.orders = data;

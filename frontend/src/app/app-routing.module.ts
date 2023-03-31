@@ -4,11 +4,13 @@ import { CategoryItemsComponent } from './components/category-items/category-ite
 import { OrderItemsComponent } from './components/order-items/order-items.component';
 
 const routes: Routes = [
+  // http://localhost:4200/category/2
+  { path: 'category/:id', component: OrderItemsComponent },
   { path: 'category', component: OrderItemsComponent },
   { path: 'orders', component: OrderItemsComponent },
   { path: '', redirectTo: '/orders', pathMatch: 'full' },
   // if user enter  anything without  all routes
-  { path: '**', redirectTo: '/orders', pathMatch: 'full' },
+  // { path: '**', redirectTo: '/orders', pathMatch: 'full' },
 ];
 
 @NgModule({

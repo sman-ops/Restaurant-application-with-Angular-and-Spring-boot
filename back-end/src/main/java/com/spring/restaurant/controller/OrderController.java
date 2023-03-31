@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,6 +16,7 @@ import com.spring.restaurant.service.OrderService;
 
 @RestController
 @CrossOrigin("http://localhost:4200")
+@RequestMapping("/api/")
 public class OrderController {
 	
 	private OrderService orderService;
@@ -26,14 +28,14 @@ public class OrderController {
 	
 	
 	
-	@GetMapping("/api/allOrders")
+	@GetMapping("allOrders")
 	public ResponseEntity<List<Order>> getAllOrders(){
 		List<Order> orders= orderService.allOrders();
 		return new  ResponseEntity<>(orders,HttpStatus.OK);
 		
 	}
 	//http://localhost:8080/api/category?id={value}
-	@GetMapping("/api/category")
+	@GetMapping("category")
 	public ResponseEntity<List<Order>> getAllOrdersByCategoryId(@RequestParam Long id){
 		
 		List<Order> orders= orderService.getOrdersByIdCategories(id);

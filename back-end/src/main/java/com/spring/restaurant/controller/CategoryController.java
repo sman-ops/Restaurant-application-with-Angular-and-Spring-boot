@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.restaurant.model.Category;
@@ -15,6 +16,7 @@ import com.spring.restaurant.service.CategoryService;
 
 @RestController
 @CrossOrigin("http://localhost:4200")
+@RequestMapping("/api/")
 public class CategoryController {
 
 	private CategoryService categoryService;
@@ -24,7 +26,7 @@ public class CategoryController {
 		this.categoryService=categoryService;
 	}
 	
-	@GetMapping("/api/allCategories")
+	@GetMapping("allCategories")
 	public  ResponseEntity<List<Category>> getAllCategory(){
 		
 		List<Category> categories= categoryService.allCategories();

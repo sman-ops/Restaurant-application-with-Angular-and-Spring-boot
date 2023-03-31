@@ -5,9 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { OrderItemsComponent } from './components/order-items/order-items.component';
 import { CategoryItemsComponent } from './components/category-items/category-items.component';
+import { DropdownMenuComponent } from './components/dropdown-menu/dropdown-menu.component';
 
 @NgModule({
-  declarations: [AppComponent, OrderItemsComponent, CategoryItemsComponent],
+  declarations: [AppComponent, OrderItemsComponent, CategoryItemsComponent, DropdownMenuComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],

@@ -42,6 +42,12 @@ public class OrderController {
 		return new  ResponseEntity<>(orders,HttpStatus.OK);
 		
 	}
+	@GetMapping("orderKey")
+	public ResponseEntity<List<Order>> getOrdersByKey(@RequestParam String word){
+		List<Order> orders= orderService.getOrdersByKey(word);
+		
+		return new  ResponseEntity<>(orders,HttpStatus.OK);
+	}
 	
 	//http://localhost:8080/api/category?id={value}
 	//	@GetMapping("/api/category/{id}")

@@ -11,5 +11,10 @@ import com.spring.restaurant.model.Order;
 public interface OrderRepository extends JpaRepository<Order,Long> {
 	
 	public List<Order> findByCategoryId(Long id);
+	//Like '%name%'
+	public  List<Order> findByNameContaining(String name);
+	
+		
+
 
 }

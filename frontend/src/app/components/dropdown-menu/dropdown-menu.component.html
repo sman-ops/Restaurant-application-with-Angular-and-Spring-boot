@@ -8,8 +8,14 @@
     Category
   </button>
   <ul class="dropdown-menu">
-    <li *ngFor="let temp of categories" routerLink="/category/{{ temp.id }}">
-      <button class="dropdown-item" type="button">{{ temp.name }}</button>
+    <li
+      routerLinkActive="menu-active"
+      *ngFor="let temp of categories"
+      routerLink="/category/{{ temp.id }}"
+    >
+      <button class="dropdown-item" type="button">
+        <i class=" {{ temp.logo }}"></i>{{ temp.name }}
+      </button>
     </li>
   </ul>
 </div>

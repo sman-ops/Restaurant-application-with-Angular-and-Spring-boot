@@ -7,6 +7,7 @@ const routes: Routes = [
   // http://localhost:4200/category/2
   { path: 'category/:id', component: OrderItemsComponent },
   { path: 'category', component: OrderItemsComponent },
+  { path: 'orders/:key', component: OrderItemsComponent },
   { path: 'orders', component: OrderItemsComponent },
   { path: '', redirectTo: '/orders', pathMatch: 'full' },
   // if user enter  anything without  all routes

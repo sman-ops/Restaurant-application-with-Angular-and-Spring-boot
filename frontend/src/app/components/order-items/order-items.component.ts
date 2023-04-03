@@ -23,9 +23,12 @@ export class OrderItemsComponent implements OnInit {
   }
 
   finichOrders() {
-    let result = this.route.snapshot.paramMap.has('id');
-    if (result === true) {
+    let result1 = this.route.snapshot.paramMap.has('id');
+    let result2 = this.route.snapshot.paramMap.has('key');
+    if (result1 === true) {
       this.getOrdersByCategoryId();
+    } else if (result2) {
+      this.getAllOrdersContainingKey();
     } else {
       console.log('test');
       this.getAllOrders();
@@ -43,6 +46,13 @@ export class OrderItemsComponent implements OnInit {
     let idCategory = this.route.snapshot.paramMap.get('id');
     this.orderService.getOrdersByCategoryId(idCategory).subscribe((data) => {
       console.log(data);
+      this.orders = data;
+    });
+  }
+
+  getAllOrdersContainingKey() {
+    let keyWord = this.route.snapshot.paramMap.get('key');
+    this.orderService.getOrdersByKey(keyWord).subscribe((data) => {
       this.orders = data;
     });
   }

@@ -18,4 +18,9 @@ export class OrderService {
   public getOrdersByCategoryId(id: any): Observable<Order[]> {
     return this.http.get<Order[]>(`${this.apiServerUrl}/api/category?id=${id}`);
   }
+  public getOrdersByKey(word: any): Observable<Order[]> {
+    return this.http.get<Order[]>(
+      `${this.apiServerUrl}/api/orderKey?word=${word}`
+    );
+  }
 }

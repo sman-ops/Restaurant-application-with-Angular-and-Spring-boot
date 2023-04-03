@@ -33,5 +33,9 @@ public class OrderService {
 	public List<Order> getOrdersByKey(String key){
 		return orderRepository.findByNameContaining(key);
 	}
+	
+	public Order getOrder(Long id) {
+		return orderRepository.findById(id).get();	
+		}
 
 }

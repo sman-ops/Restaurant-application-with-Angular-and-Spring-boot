@@ -1,0 +1,19 @@
+.mycard {
+  box-shadow: 0 4px 8px 0;
+  width: 676px;
+  height: auto;
+  margin: auto;
+  text-align: center;
+  font-family: Arial;
+}
+.oneOrder {
+  margin-top: 20px;
+  margin-right: 400px;
+  background-color: beige;
+  padding: 20px;
+  margin-left: 110px;
+}
+
+.orbut {
+  width: inherit;
+}

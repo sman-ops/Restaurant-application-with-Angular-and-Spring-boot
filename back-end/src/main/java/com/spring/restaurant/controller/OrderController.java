@@ -49,6 +49,14 @@ public class OrderController {
 		return new  ResponseEntity<>(orders,HttpStatus.OK);
 	}
 	
+	// http://locahost:8080/api/order?id={value}
+	@GetMapping("order") 
+	public Order getOrderById(@RequestParam Long id) {
+		return orderService.getOrder(id);
+	
+	}
+	
+	
 	//http://localhost:8080/api/category?id={value}
 	//	@GetMapping("/api/category/{id}")
 		//public ResponseEntity<List<Order>> getAllOrdersByCategoryId(@PathVariable Long id){

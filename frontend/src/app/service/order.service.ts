@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Order } from '../../app/model/order';
+import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
@@ -22,5 +23,11 @@ export class OrderService {
     return this.http.get<Order[]>(
       `${this.apiServerUrl}/api/orderKey?word=${word}`
     );
+  }
+
+  public getOrderById(id: any): Observable<Order> {
+    return this.http
+      .get<Order>(`${this.apiServerUrl}/api/order?id=${id}`)
+      .pipe(map((response: Order) => response));
   }
 }

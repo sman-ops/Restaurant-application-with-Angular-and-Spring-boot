@@ -7,9 +7,10 @@ import { OrderItemsComponent } from './components/order-items/order-items.compon
 import { CategoryItemsComponent } from './components/category-items/category-items.component';
 import { DropdownMenuComponent } from './components/dropdown-menu/dropdown-menu.component';
 import { SearchOrderComponent } from './components/search-order/search-order.component';
+import { OrdersDetailsComponent } from './components/orders-details/orders-details.component';
 
 @NgModule({
-  declarations: [AppComponent, OrderItemsComponent, CategoryItemsComponent, DropdownMenuComponent, SearchOrderComponent],
+  declarations: [AppComponent, OrderItemsComponent, CategoryItemsComponent, DropdownMenuComponent, SearchOrderComponent, OrdersDetailsComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],

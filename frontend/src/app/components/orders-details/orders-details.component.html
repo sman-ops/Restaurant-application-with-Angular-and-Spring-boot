@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="oneOrder">
+    <div class="mycard order-item">
+      <img src="{{ order.img }}" alt="Denim Jeans" style="width: 50%" />
+      <h1>{{ order.name }}</h1>
+      <h3>{{ order.description }}</h3>
+      <p class="price">{{ order.price | currency : "USD" }}</p>
+      <button class="btn btn-primary orbut" style="width: 60%">
+        Add to cart
+      </button>
+    </div>
+  </div>
+</div>

@@ -11,6 +11,11 @@ import { Order } from '../../model/order';
 export class OrderItemsComponent implements OnInit {
   orders: Order[] = [];
 
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 6;
+  tableSizes: any = [3, 6, 9, 12];
+
   constructor(
     private orderService: OrderService,
     private route: ActivatedRoute
@@ -55,5 +60,15 @@ export class OrderItemsComponent implements OnInit {
     this.orderService.getOrdersByKey(keyWord).subscribe((data) => {
       this.orders = data;
     });
+  }
+
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.finichOrders();
+  }
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.finichOrders();
   }
 }

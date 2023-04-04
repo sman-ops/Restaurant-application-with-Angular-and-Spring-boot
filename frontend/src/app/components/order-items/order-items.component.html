@@ -1,5 +1,17 @@
 <div class="row">
-  <div *ngFor="let temp of orders" class="col-md-4 myorder">
+  <div
+    *ngFor="
+      let temp of orders
+        | paginate
+          : {
+              itemsPerPage: tableSize,
+              currentPage: page,
+              totalItems: count
+            };
+      let i = index
+    "
+    class="col-md-4 myorder"
+  >
     <div class="card order-item">
       <a routerLink="/order/{{ temp.id }}">
         <img src="{{ temp.img }}" alt="Denim Jeans" style="width: 100%" />
@@ -13,5 +25,14 @@
       </p>
       <button class="btn btn-primary mybu">Add to Cart</button>
     </div>
+  </div>
+
+  <div class="col-md-9 pag" style="padding-left: 30%">
+    <pagination-controls
+      previousLabel="Prev"
+      nextLabel="Next"
+      (pageChange)="onTableDataChange($event)"
+    >
+    </pagination-controls>
   </div>
 </div>

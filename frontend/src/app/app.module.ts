@@ -8,10 +8,22 @@ import { CategoryItemsComponent } from './components/category-items/category-ite
 import { DropdownMenuComponent } from './components/dropdown-menu/dropdown-menu.component';
 import { SearchOrderComponent } from './components/search-order/search-order.component';
 import { OrdersDetailsComponent } from './components/orders-details/orders-details.component';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 @NgModule({
-  declarations: [AppComponent, OrderItemsComponent, CategoryItemsComponent, DropdownMenuComponent, SearchOrderComponent, OrdersDetailsComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  declarations: [
+    AppComponent,
+    OrderItemsComponent,
+    CategoryItemsComponent,
+    DropdownMenuComponent,
+    SearchOrderComponent,
+    OrdersDetailsComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    NgxPaginationModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

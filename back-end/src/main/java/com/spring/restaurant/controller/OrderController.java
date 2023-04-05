@@ -27,24 +27,24 @@ public class OrderController {
 	}
 	
 	
-	
+	 // http://localhost/api/allOrders?page={value}&size={value}
 	@GetMapping("allOrders")
-	public ResponseEntity<List<Order>> getAllOrders(){
-		List<Order> orders= orderService.allOrders();
+	public ResponseEntity<List<Order>> getAllOrders(@RequestParam int page,@RequestParam int size){
+		List<Order> orders= orderService.allOrders(page,size);
 		return new  ResponseEntity<>(orders,HttpStatus.OK);
 		
 	}
-	//http://localhost:8080/api/category?id={value}
+	//http://localhost:8080/api/category?id={value}&page={value}&size={value}
 	@GetMapping("category")
-	public ResponseEntity<List<Order>> getAllOrdersByCategoryId(@RequestParam Long id){
+	public ResponseEntity<List<Order>> getAllOrdersByCategoryId(@RequestParam Long id,@RequestParam int page,@RequestParam int size){
 		
-		List<Order> orders= orderService.getOrdersByIdCategories(id);
+		List<Order> orders= orderService.getOrdersByIdCategories(id,page,size);
 		return new  ResponseEntity<>(orders,HttpStatus.OK);
 		
 	}
 	@GetMapping("orderKey")
-	public ResponseEntity<List<Order>> getOrdersByKey(@RequestParam String word){
-		List<Order> orders= orderService.getOrdersByKey(word);
+	public ResponseEntity<List<Order>> getOrdersByKey(@RequestParam String word,@RequestParam int page,@RequestParam int size){
+		List<Order> orders= orderService.getOrdersByKey(word,page,size);
 		
 		return new  ResponseEntity<>(orders,HttpStatus.OK);
 	}

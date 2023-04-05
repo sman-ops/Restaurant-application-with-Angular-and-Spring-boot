@@ -12,16 +12,24 @@ export class OrderService {
   constructor(private http: HttpClient) {}
 
   // dans get<Order[]> : la méthode get nous retourne array of order
-  public getOrders(): Observable<Order[]> {
-    return this.http.get<Order[]>(`${this.apiServerUrl}/api/allOrders`);
+  public getOrders(page: any, size: any): Observable<Order[]> {
+    return this.http.get<Order[]>(
+      `${this.apiServerUrl}/api/allOrders?page=${page}&size=${size}`
+    );
   }
 
-  public getOrdersByCategoryId(id: any): Observable<Order[]> {
-    return this.http.get<Order[]>(`${this.apiServerUrl}/api/category?id=${id}`);
-  }
-  public getOrdersByKey(word: any): Observable<Order[]> {
+  public getOrdersByCategoryId(
+    id: any,
+    page: any,
+    size: any
+  ): Observable<Order[]> {
     return this.http.get<Order[]>(
-      `${this.apiServerUrl}/api/orderKey?word=${word}`
+      `${this.apiServerUrl}/api/category?id=${id}&page=${page}&size=${size}`
+    );
+  }
+  public getOrdersByKey(word: any, page: any, size: any): Observable<Order[]> {
+    return this.http.get<Order[]>(
+      `${this.apiServerUrl}/api/orderKey?word=${word}&page=${page}&size=${size}`
     );
   }
 

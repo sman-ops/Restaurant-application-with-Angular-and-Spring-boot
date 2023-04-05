@@ -9,12 +9,10 @@ import { Order } from '../../model/order';
   styleUrls: ['./order-items.component.css'],
 })
 export class OrderItemsComponent implements OnInit {
-  orders: Order[] = [];
-
   page: number = 1;
-  count: number = 0;
-  tableSize: number = 6;
-  tableSizes: any = [3, 6, 9, 12];
+  pageLength: number = 2;
+  orderSize: number = 10;
+  orders: Order[] = [];
 
   constructor(
     private orderService: OrderService,
@@ -41,34 +39,34 @@ export class OrderItemsComponent implements OnInit {
   }
 
   getAllOrders(): void {
-    this.orderService.getOrders().subscribe((data: Order[]) => {
-      console.log(data);
-      this.orders = data;
-    });
+    this.orderService
+      .getOrders(this.page - 1, this.pageLength)
+      .subscribe((data: Order[]) => {
+        console.log(data);
+        this.orders = data;
+      });
   }
 
   getOrdersByCategoryId(): void {
     let idCategory = this.route.snapshot.paramMap.get('id');
-    this.orderService.getOrdersByCategoryId(idCategory).subscribe((data) => {
-      console.log(data);
-      this.orders = data;
-    });
+    this.orderService
+      .getOrdersByCategoryId(idCategory, this.page - 1, this.pageLength)
+      .subscribe((data) => {
+        console.log(data);
+        this.orders = data;
+      });
   }
 
   getAllOrdersContainingKey() {
     let keyWord = this.route.snapshot.paramMap.get('key');
-    this.orderService.getOrdersByKey(keyWord).subscribe((data) => {
-      this.orders = data;
-    });
+    this.orderService
+      .getOrdersByKey(keyWord, this.page - 1, this.pageLength)
+      .subscribe((data) => {
+        this.orders = data;
+      });
   }
 
-  onTableDataChange(event: any) {
-    this.page = event;
-    this.finichOrders();
-  }
-  onTableSizeChange(event: any): void {
-    this.tableSize = event.target.value;
-    this.page = 1;
+  doing() {
     this.finichOrders();
   }
 }

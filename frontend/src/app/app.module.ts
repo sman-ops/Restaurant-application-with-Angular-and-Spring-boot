@@ -9,6 +9,7 @@ import { DropdownMenuComponent } from './components/dropdown-menu/dropdown-menu.
 import { SearchOrderComponent } from './components/search-order/search-order.component';
 import { OrdersDetailsComponent } from './components/orders-details/orders-details.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +23,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgxPaginationModule,
+    NgbPaginationModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

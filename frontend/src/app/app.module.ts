@@ -10,6 +10,7 @@ import { SearchOrderComponent } from './components/search-order/search-order.com
 import { OrdersDetailsComponent } from './components/orders-details/orders-details.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { CardStatusComponent } from './components/card-status/card-status.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,6 +19,7 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
     DropdownMenuComponent,
     SearchOrderComponent,
     OrdersDetailsComponent,
+    CardStatusComponent,
   ],
   imports: [
     BrowserModule,

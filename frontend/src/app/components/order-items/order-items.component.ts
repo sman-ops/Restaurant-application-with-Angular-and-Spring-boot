@@ -80,4 +80,8 @@ export class OrderItemsComponent implements OnInit {
   doing() {
     this.finichOrders();
   }
+
+  addToCard(temp: Order) {
+    console.log(temp);
+  }
 }

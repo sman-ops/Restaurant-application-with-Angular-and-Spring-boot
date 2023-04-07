@@ -11,7 +11,9 @@
       <p class="dis">
         {{ temp.description }}
       </p>
-      <button class="btn btn-primary mybu">Add to Cart</button>
+      <button class="btn btn-primary mybu" (click)="addToCard(temp)">
+        Add to Cart
+      </button>
     </div>
   </div>
 

@@ -11,7 +11,7 @@ import { Order } from '../../model/order';
 export class OrderItemsComponent implements OnInit {
   page: number = 1;
   pageLength: number = 2;
-  orderSize: number = 10;
+  orderSize: number = 0;
   orders: Order[] = [];
 
   constructor(
@@ -39,6 +39,9 @@ export class OrderItemsComponent implements OnInit {
   }
 
   getAllOrders(): void {
+    this.orderService.getOrdersLength().subscribe((data) => {
+      this.orderSize = data;
+    });
     this.orderService
       .getOrders(this.page - 1, this.pageLength)
       .subscribe((data: Order[]) => {
@@ -50,6 +53,11 @@ export class OrderItemsComponent implements OnInit {
   getOrdersByCategoryId(): void {
     let idCategory = this.route.snapshot.paramMap.get('id');
     this.orderService
+      .getOrdersLengthByCategoryId(idCategory)
+      .subscribe((data) => {
+        this.orderSize = data;
+      });
+    this.orderService
       .getOrdersByCategoryId(idCategory, this.page - 1, this.pageLength)
       .subscribe((data) => {
         console.log(data);
@@ -59,6 +67,9 @@ export class OrderItemsComponent implements OnInit {
 
   getAllOrdersContainingKey() {
     let keyWord = this.route.snapshot.paramMap.get('key');
+    this.orderService.getOrdersLengthKey(keyWord).subscribe((data) => {
+      this.orderSize = data;
+    });
     this.orderService
       .getOrdersByKey(keyWord, this.page - 1, this.pageLength)
       .subscribe((data) => {

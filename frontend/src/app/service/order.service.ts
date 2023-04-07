@@ -38,4 +38,20 @@ export class OrderService {
       .get<Order>(`${this.apiServerUrl}/api/order?id=${id}`)
       .pipe(map((response: Order) => response));
   }
+
+  public getOrdersLength(): Observable<number> {
+    return this.http.get<number>(`${this.apiServerUrl}/api/orderSize`);
+  }
+
+  public getOrdersLengthByCategoryId(id: any): Observable<number> {
+    return this.http.get<number>(
+      `${this.apiServerUrl}/api/categoryidSize?id=${id}`
+    );
+  }
+
+  public getOrdersLengthKey(word: any): Observable<number> {
+    return this.http.get<number>(
+      `${this.apiServerUrl}/api/keySize?key=${word}`
+    );
+  }
 }

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CartOrder } from 'src/app/model/cart-order';
 import { OrderService } from 'src/app/service/order.service';
-
+import { CardServiceService } from 'src/app/service/card-service.service';
 import { Order } from '../../model/order';
 @Component({
   selector: 'app-order-items',
@@ -16,7 +17,8 @@ export class OrderItemsComponent implements OnInit {
 
   constructor(
     private orderService: OrderService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cartService: CardServiceService
   ) {}
 
   ngOnInit(): void {
@@ -82,6 +84,8 @@ export class OrderItemsComponent implements OnInit {
   }
 
   addToCard(temp: Order) {
-    console.log(temp);
+    // console.log(temp);
+    const cartorder = new CartOrder(temp);
+    this.cartService.addOrderToCard(cartorder);
   }
 }

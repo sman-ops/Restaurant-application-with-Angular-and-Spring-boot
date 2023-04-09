@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CardServiceService } from 'src/app/service/card-service.service';
 import {} from 'src/app/service/category-service.service';
-
 @Component({
   selector: 'app-card-status',
   templateUrl: './card-status.component.html',
@@ -18,7 +17,7 @@ export class CardStatusComponent implements OnInit {
   }
 
   getCartStatus() {
-    this.orderSize = this.cartService.totalOrders;
-    this.orderPrice = this.cartService.totalprice;
+    this.cartService.totalOrders.subscribe((data) => (this.orderSize = data));
+    this.cartService.totalprice.subscribe((data) => (this.orderPrice = data));
   }
 }

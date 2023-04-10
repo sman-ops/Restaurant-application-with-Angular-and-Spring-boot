@@ -19,4 +19,12 @@ export class PurchasesComponent implements OnInit {
   getAllOrders() {
     this.orders = this.cardService.orders;
   }
+
+  addOrder(temp: CartOrder) {
+    this.cardService.addOrderToCard(temp);
+  }
+
+  removeOrder(temp: CartOrder) {
+    this.cardService.removeOrder(temp);
+  }
 }

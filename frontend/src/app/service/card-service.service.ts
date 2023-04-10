@@ -45,4 +45,22 @@ export class CardServiceService {
     console.log('size ' + this.totalprice);
     console.log('price ' + this.totalOrders);
   }
+
+  removeOrder(order: CartOrder) {
+    order.quantity--;
+    if (order.quantity === 0) {
+      this.remove(order);
+    } else {
+      this.calcultateTotal();
+    }
+  }
+
+  remove(order: CartOrder) {
+    // index or -1
+    const index = this.orders.findIndex((temp) => temp.id === order.id);
+    if (index > -1) {
+      this.orders.splice(index, 1);
+      this.calcultateTotal();
+    }
+  }
 }

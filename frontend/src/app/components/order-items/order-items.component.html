@@ -29,3 +29,7 @@
     </ngb-pagination>
   </div>
 </div>
+
+<div class="alert alert-danger" *ngIf="orders?.length == 0" role="alert">
+  No orders found
+</div>

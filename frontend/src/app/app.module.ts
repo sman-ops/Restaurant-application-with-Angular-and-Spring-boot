@@ -11,6 +11,7 @@ import { OrdersDetailsComponent } from './components/orders-details/orders-detai
 import { NgxPaginationModule } from 'ngx-pagination';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { CardStatusComponent } from './components/card-status/card-status.component';
+import { PurchasesComponent } from './components/purchases/purchases.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,6 +21,7 @@ import { CardStatusComponent } from './components/card-status/card-status.compon
     SearchOrderComponent,
     OrdersDetailsComponent,
     CardStatusComponent,
+    PurchasesComponent,
   ],
   imports: [
     BrowserModule,

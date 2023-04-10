@@ -1,0 +1,23 @@
+.buyingorder {
+  margin-left: 135px;
+}
+span {
+  margin: 0 98px;
+}
+i {
+  background-color: #149ddd;
+  padding: 3px;
+  color: white;
+}
+.totprice {
+  position: absolute;
+  padding: 18px;
+  font-weight: bold;
+  color: white;
+  background-color: #149ddd;
+  font-size: 15px;
+}
+
+.to2 {
+  right: 8px;
+}

@@ -13,6 +13,7 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { CardStatusComponent } from './components/card-status/card-status.component';
 import { PurchasesComponent } from './components/purchases/purchases.component';
 import { CheckOutComponent } from './components/check-out/check-out.component';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +31,7 @@ import { CheckOutComponent } from './components/check-out/check-out.component';
     AppRoutingModule,
     HttpClientModule,
     NgbPaginationModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

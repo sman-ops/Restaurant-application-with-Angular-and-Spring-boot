@@ -1175,3 +1175,22 @@ section {
   background-color: cadetblue;
   color: aliceblue;
 }
+
+.check-out {
+  border-radius: 30px;
+  background-color: white;
+  padding: 20px;
+  width: 400px;
+  font-size: 21px;
+  font-weight: bold;
+}
+
+.done {
+  width: 366px;
+}
+
+.size {
+  background-color: crimson;
+  padding: 8px;
+  color: aliceblue;
+}

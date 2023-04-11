@@ -10,10 +10,24 @@ import { CardServiceService } from 'src/app/service/card-service.service';
 export class PurchasesComponent implements OnInit {
   orders: CartOrder[] = [];
 
+  totalOrder: number = 0;
+  totalPrice: number = 0;
+
   constructor(private cardService: CardServiceService) {}
 
   ngOnInit(): void {
     this.getAllOrders();
+    this.geTotals();
+    this.cardService.calcultateTotal();
+  }
+
+  geTotals() {
+    this.cardService.totalOrders.subscribe((data) => {
+      this.totalOrder = data;
+    });
+    this.cardService.totalprice.subscribe((data) => {
+      this.totalPrice = data;
+    });
   }
 
   getAllOrders() {
@@ -26,5 +40,9 @@ export class PurchasesComponent implements OnInit {
 
   removeOrder(temp: CartOrder) {
     this.cardService.removeOrder(temp);
+  }
+
+  remove(temp: CartOrder) {
+    this.cardService.remove(temp);
   }
 }

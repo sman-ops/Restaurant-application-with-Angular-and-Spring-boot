@@ -14,11 +14,21 @@
         ><span>{{ temp.quantity }}</span
         ><i (click)="removeOrder(temp)" class="fas fa-minus"></i>
       </p>
-      <button class="btn btn-primary mybu">Remove</button>
+      <button (click)="remove(temp)" class="btn btn-primary mybu">
+        Remove
+      </button>
     </div>
   </div>
 </div>
 
 <div class="alert alert-danger" *ngIf="orders?.length == 0" role="alert">
   No orders found
+</div>
+
+<div class="check-out">
+  <div class="size">total order{{ totalOrder }}</div>
+  <div class="totalprice">
+    total price : {{ totalPrice | currency : "USD" }}
+  </div>
+  <button *ngIf="orders.length !== 0" class="btn btn-primary done">Done</button>
 </div>

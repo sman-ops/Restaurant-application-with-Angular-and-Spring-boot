@@ -12,6 +12,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { CardStatusComponent } from './components/card-status/card-status.component';
 import { PurchasesComponent } from './components/purchases/purchases.component';
+import { CheckOutComponent } from './components/check-out/check-out.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +23,7 @@ import { PurchasesComponent } from './components/purchases/purchases.component';
     OrdersDetailsComponent,
     CardStatusComponent,
     PurchasesComponent,
+    CheckOutComponent,
   ],
   imports: [
     BrowserModule,

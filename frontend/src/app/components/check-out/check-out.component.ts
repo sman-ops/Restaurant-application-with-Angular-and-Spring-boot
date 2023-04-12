@@ -45,4 +45,15 @@ export class CheckOutComponent implements OnInit {
   done() {
     console.log(this.checkoutParentGroup.get('data')?.value);
   }
+
+  similarGroup(event: Event) {
+    // cast to html inpput element
+    if ((<HTMLInputElement>event.target).checked) {
+      this.checkoutParentGroup
+        .get('toPerson')
+        ?.setValue(this.checkoutParentGroup.get('fromPerson')?.value);
+    } else {
+      this.checkoutParentGroup.get('toPerson')?.reset();
+    }
+  }
 }

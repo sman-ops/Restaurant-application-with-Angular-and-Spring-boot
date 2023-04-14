@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { Country } from 'src/app/model/country';
+import { State } from 'src/app/model/state';
+import { StateCountryServiceService } from 'src/app/service/state-country-service.service';
 
 @Component({
   selector: 'app-check-out',
@@ -10,10 +13,18 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 export class CheckOutComponent implements OnInit {
   checkoutParentGroup!: FormGroup;
 
-  constructor(private formChildGroup: FormBuilder) {}
+  countries: Country[] = [];
+  states: State[] = [];
+
+  constructor(
+    private formChildGroup: FormBuilder,
+    private stateCountry: StateCountryServiceService
+  ) {}
 
   ngOnInit(): void {
     this.createForm();
+    this.getAllCountries();
+    this.getAllStates();
   }
 
   createForm() {
@@ -55,5 +66,17 @@ export class CheckOutComponent implements OnInit {
     } else {
       this.checkoutParentGroup.get('toPerson')?.reset();
     }
+  }
+
+  getAllCountries() {
+    this.stateCountry.getAllCountries().subscribe((data) => {
+      this.countries = data;
+    });
+  }
+
+  getAllStates() {
+    this.stateCountry.getAllStates().subscribe((data) => {
+      this.states = data;
+    });
   }
 }

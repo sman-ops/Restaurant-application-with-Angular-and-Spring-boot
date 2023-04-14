@@ -7,5 +7,6 @@ import com.spring.restaurant.model.Country;
 
 @Repository
 public interface CountryRepository extends JpaRepository<Country,Long> {
+	
 
 }

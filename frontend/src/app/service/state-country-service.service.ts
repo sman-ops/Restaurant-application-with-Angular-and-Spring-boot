@@ -24,4 +24,10 @@ export class StateCountryServiceService {
       .get<State[]>(`${this.apiServerUrl}/api/states`)
       .pipe(map((response: State[]) => response));
   }
+
+  public getStatesByCode(code: any): Observable<State[]> {
+    return this.http
+      .get<State[]>(`${this.apiServerUrl}/api/statescode?code=${code}`)
+      .pipe(map((response: State[]) => response));
+  }
 }

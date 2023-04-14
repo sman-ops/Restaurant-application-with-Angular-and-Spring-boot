@@ -28,7 +28,7 @@ public class StateController {
 		return stateService.getListStates();
 		
 	}
-	
+	// localhost:8080/api/statescode?code=TN
 	@GetMapping("/statescode")
 	public List<State> getStatesByCode(@RequestParam String code){
 		

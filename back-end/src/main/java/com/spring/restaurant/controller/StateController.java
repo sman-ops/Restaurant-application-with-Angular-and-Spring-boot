@@ -1,10 +1,14 @@
 package com.spring.restaurant.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.spring.restaurant.model.State;
 import com.spring.restaurant.service.StateService;
 
 @RestController
@@ -15,5 +19,13 @@ public class StateController {
 	
 	@Autowired
 	private StateService stateService;
+	
+	
+	@GetMapping("/states")
+	public List<State> getListStates(){
+		
+		return stateService.getListStates();
+		
+	}
 
 }

@@ -25,7 +25,6 @@ public class Client extends PublicData {
 	@Column(name="phone_number")
 	private String phoneNumber;
 	
-	
 	@OneToMany(cascade=CascadeType.ALL,mappedBy="client")
 	private Set<RequestOrder> requestOrders;
 

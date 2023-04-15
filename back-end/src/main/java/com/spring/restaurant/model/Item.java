@@ -28,9 +28,9 @@ public class Item extends BaseEntity {
 	@Column(name="price")
 	private int price;
 	
-	
-	@ManyToOne()
-	@JoinColumn(name="request_order_id")
-	private RequestOrder requestOrder;
+	 @ManyToOne()
+	 @JoinColumn(name="request_order_id")
+	 private RequestOrder requestOrder;
 
+	
 }

@@ -11,6 +11,22 @@
         aria-label="Username"
       />
     </div>
+    <div *ngIf="fullName?.invalid && (fullName?.dirty || fullName?.touched)">
+      <div
+        *ngIf="fullName?.errors?.['required']"
+        class="alert alert-danger"
+        role="alert"
+      >
+        fullname is required
+      </div>
+      <div
+        *ngIf="fullName?.errors?.['minlength']"
+        class="alert alert-danger"
+        role="alert"
+      >
+        full name must be not less than 6 digit
+      </div>
+    </div>
 
     <div class="input-group mb-3">
       <span class="input-group-text">@gmail.com</span>
@@ -22,7 +38,22 @@
         aria-label="Recipient"
       />
     </div>
-
+    <div *ngIf="gmail?.invalid && (gmail?.dirty || gmail?.touched)">
+      <div
+        *ngIf="gmail?.errors?.['required']"
+        class="alert alert-danger"
+        role="alert"
+      >
+        email is required
+      </div>
+      <div
+        *ngIf="gmail?.errors?.['pattern']"
+        class="alert alert-danger"
+        role="alert"
+      >
+        invalid gmail
+      </div>
+    </div>
     <div class="input-group mb-3">
       <span class="input-group-text">Phone</span>
       <input
@@ -31,6 +62,36 @@
         class="form-control"
         aria-describedby="basic-addon3"
       />
+    </div>
+    <div *ngIf="phone?.invalid && (phone?.dirty || phone?.touched)">
+      <div
+        *ngIf="phone?.errors?.['required']"
+        class="alert alert-danger"
+        role="alert"
+      >
+        Phone is required
+      </div>
+      <div
+        *ngIf="phone?.errors?.['minlength']"
+        class="alert alert-danger"
+        role="alert"
+      >
+        phone must be not be more than 8 digits
+      </div>
+      <div
+        *ngIf="phone?.errors?.['maxlength']"
+        class="alert alert-danger"
+        role="alert"
+      >
+        phone must be not be less than 8 digits
+      </div>
+      <div
+        *ngIf="phone?.errors?.['pattern']"
+        class="alert alert-danger"
+        role="alert"
+      >
+        Invalid phone
+      </div>
     </div>
   </div>
 

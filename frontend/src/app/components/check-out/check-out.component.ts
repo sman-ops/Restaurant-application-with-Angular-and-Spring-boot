@@ -70,8 +70,23 @@ export class CheckOutComponent implements OnInit {
     });
   }
 
+  get fullName() {
+    return this.checkoutParentGroup.get('data.fullName');
+  }
+  get gmail() {
+    return this.checkoutParentGroup.get('data.gmail');
+  }
+  get phone() {
+    return this.checkoutParentGroup.get('data.phone');
+  }
+
   done() {
-    console.log(this.checkoutParentGroup.get('data')?.value);
+    // console.log(this.checkoutParentGroup.get('data')?.value);
+
+    if (this.checkoutParentGroup.invalid) {
+      this.checkoutParentGroup.markAllAsTouched();
+    } else {
+    }
   }
 
   similarGroup(event: Event) {

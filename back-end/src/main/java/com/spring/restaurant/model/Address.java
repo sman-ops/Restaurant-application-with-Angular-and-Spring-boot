@@ -4,6 +4,8 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -25,6 +27,10 @@ public class Address extends CategoryOrder {
 	
 	@Column(name="zip_code")
 	private String zipCode;
+	
+	@OneToOne
+	@PrimaryKeyJoinColumn
+	private RequestOrder requestOrder;
 	
 	
 

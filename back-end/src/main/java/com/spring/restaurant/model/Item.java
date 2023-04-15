@@ -4,6 +4,8 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -25,5 +27,10 @@ public class Item extends BaseEntity {
 	
 	@Column(name="price")
 	private int price;
+	
+	
+	@ManyToOne()
+	@JoinColumn(name="request_order_id")
+	private RequestOrder requestOrder;
 
 }

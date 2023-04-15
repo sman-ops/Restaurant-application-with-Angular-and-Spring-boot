@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { Country } from 'src/app/model/country';
 import { State } from 'src/app/model/state';
+import { CardServiceService } from 'src/app/service/card-service.service';
 import { StateCountryServiceService } from 'src/app/service/state-country-service.service';
 
 @Component({
@@ -21,15 +22,20 @@ export class CheckOutComponent implements OnInit {
   countries: Country[] = [];
   statesFromPerson: State[] = [];
   statesToPerson: State[] = [];
+  totalOrders: number = 0;
+  totalPrices: number = 0;
 
   constructor(
     private formChildGroup: FormBuilder,
-    private stateCountry: StateCountryServiceService
+    private stateCountry: StateCountryServiceService,
+    private cardService: CardServiceService
   ) {}
 
   ngOnInit(): void {
     this.createForm();
     this.getAllCountries();
+    this.getTotals();
+
     //  this.getStatesByCode();
   }
 
@@ -104,6 +110,15 @@ export class CheckOutComponent implements OnInit {
   getAllCountries() {
     this.stateCountry.getAllCountries().subscribe((data) => {
       this.countries = data;
+    });
+  }
+
+  getTotals() {
+    this.cardService.totalOrders.subscribe((data) => {
+      this.totalOrders = data;
+    });
+    this.cardService.totalprice.subscribe((data) => {
+      this.totalPrices = data;
     });
   }
 

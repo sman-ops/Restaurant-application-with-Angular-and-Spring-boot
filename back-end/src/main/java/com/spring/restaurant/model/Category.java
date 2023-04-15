@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name="category")
-public class Category extends CategoryOrder {
+public class Category extends PublicData {
 	
 	@Column(name="categorylogo")
 	private String logo;

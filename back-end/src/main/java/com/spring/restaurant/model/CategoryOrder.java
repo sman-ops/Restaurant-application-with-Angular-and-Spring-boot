@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @MappedSuperclass
-public class CategoryOrder extends PublicData {
+public class CategoryOrder extends BaseEntity {
 	
 	
 	

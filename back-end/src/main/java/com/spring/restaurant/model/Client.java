@@ -1,5 +1,6 @@
 package com.spring.restaurant.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -26,6 +27,12 @@ public class Client extends PublicData {
 	private String phoneNumber;
 	
 	@OneToMany(cascade=CascadeType.ALL,mappedBy="client")
-	private Set<RequestOrder> requestOrders;
+	private Set<RequestOrder> requestOrders=new HashSet<>();
+	
+	public void addRequestOrder(RequestOrder requestOrder) {
+		requestOrders.add(requestOrder);
+		requestOrder.setClient(this);
+		
+	}
 
 }

@@ -1,6 +1,7 @@
 package com.spring.restaurant.model;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -41,23 +42,26 @@ public class RequestOrder extends CategoryOrder {
 	private int totalQuantity;
 	
 	@OneToMany(cascade=CascadeType.ALL,mappedBy="requestOrder")
-	private Set<Item> items;
+	private Set<Item> items=new HashSet<>();
 	
 	
 	@ManyToOne()
 	@JoinColumn(name="client_id")
-	private Client client;
+	private Client client=new Client();
 	
 	
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="to_address_id",referencedColumnName="id")
-	private Address toAddress; 
+	private Address toAddress=new Address();
 	
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="from_address_id",referencedColumnName="id")
-	private Address fromAddress; 
+	private Address fromAddress=new Address();
 	
 	
-
-
+	public void addItem(Item item) {
+		items.add(item);
+		item.setRequestOrder(this);
+	}
+	
 }

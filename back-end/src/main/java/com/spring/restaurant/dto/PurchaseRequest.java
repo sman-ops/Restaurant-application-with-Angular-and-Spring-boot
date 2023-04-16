@@ -1,5 +1,6 @@
 package com.spring.restaurant.dto;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import com.spring.restaurant.model.Address;
@@ -19,7 +20,7 @@ public class PurchaseRequest {
 	
 	private Client client;
 	private RequestOrder requestOrder;
-	private Set<Item> items;
+	private Set<Item> items=new HashSet();
 	private Address fromAddress;
 	private Address toAddress;
 

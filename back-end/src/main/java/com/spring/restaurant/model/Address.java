@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name="addreess")
+@Table(name="addresse")
 public class Address extends CategoryOrder {
 	
 	@Column(name="country")
@@ -28,8 +28,17 @@ public class Address extends CategoryOrder {
 	@Column(name="zip_code")
 	private String zipCode;
 	
+	
+	@Column(name="to_country")
+	private String tocountry;
+	
+	@Column(name="to_state")
+	private String tostate;
+	
+	@Column(name="to_zipcode")
+	private String toZipCode;
+	
 	 @OneToOne
-	 @PrimaryKeyJoinColumn
 	 private RequestOrder requestOrder;
 	
 	

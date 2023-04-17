@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class PurchaseResponse {
 	
-	
 	private String name;
 	private String code;
 	

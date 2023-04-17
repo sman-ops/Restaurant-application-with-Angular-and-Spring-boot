@@ -1,5 +1,6 @@
 package com.spring.restaurant.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -15,7 +16,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,7 +27,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name="request_orders")
+@Table(name="request_orderss")
 public class RequestOrder extends CategoryOrder {
 	
 	
@@ -42,7 +45,7 @@ public class RequestOrder extends CategoryOrder {
 	private int totalQuantity;
 	
 	@OneToMany(cascade=CascadeType.ALL,mappedBy="requestOrder")
-	private Set<Item> items=new HashSet<>();
+	private List<Item> items=new ArrayList();
 	
 	
 	@ManyToOne()
@@ -51,13 +54,12 @@ public class RequestOrder extends CategoryOrder {
 	
 	
 	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="to_address_id",referencedColumnName="id")
-	private Address toAddress=new Address();
-	
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="from_address_id",referencedColumnName="id")
+	@JoinColumn(name="from_address_id")
 	private Address fromAddress=new Address();
 	
+	//@OneToOne(cascade=CascadeType.ALL)
+	//@JoinColumn(name="to_address_id",referencedColumnName="id")
+	//private Address toAddress=new Address();
 	
 	public void addItem(Item item) {
 		items.add(item);

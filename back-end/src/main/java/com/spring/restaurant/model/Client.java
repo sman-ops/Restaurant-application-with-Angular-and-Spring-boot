@@ -1,6 +1,8 @@
 package com.spring.restaurant.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -9,7 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,7 +29,7 @@ public class Client extends PublicData {
 	private String phoneNumber;
 	
 	@OneToMany(cascade=CascadeType.ALL,mappedBy="client")
-	private Set<RequestOrder> requestOrders=new HashSet<>();
+	private List<RequestOrder> requestOrders=new ArrayList();
 	
 	public void addRequestOrder(RequestOrder requestOrder) {
 		requestOrders.add(requestOrder);

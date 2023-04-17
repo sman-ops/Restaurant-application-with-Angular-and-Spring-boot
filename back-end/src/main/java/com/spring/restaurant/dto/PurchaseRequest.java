@@ -1,6 +1,7 @@
 package com.spring.restaurant.dto;
 
-import java.util.HashSet;
+
+import java.util.List;
 import java.util.Set;
 
 import com.spring.restaurant.model.Address;
@@ -10,6 +11,7 @@ import com.spring.restaurant.model.RequestOrder;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 
@@ -20,8 +22,8 @@ public class PurchaseRequest {
 	
 	private Client client;
 	private RequestOrder requestOrder;
-	private Set<Item> items=new HashSet();
+	private List<Item> items;
 	private Address fromAddress;
-	private Address toAddress;
+	
 
 }

@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
@@ -16,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name="item")
+@Table(name="items")
 public class Item extends BaseEntity {
 	
 	@Column(name="image")
@@ -29,7 +30,7 @@ public class Item extends BaseEntity {
 	private int price;
 	
 	 @ManyToOne()
-	 @JoinColumn(name="request_order_id")
+	 @JoinColumn(name="request_orderid")
 	 private RequestOrder requestOrder;
 
 	

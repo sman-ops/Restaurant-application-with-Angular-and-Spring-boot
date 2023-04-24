@@ -8,4 +8,16 @@ export class PurchaseRequest {
   fromAddress: Address;
   requestOrder: RequestOrder;
   items: Item[];
+
+  constructor(
+    client: Client,
+    fromAddress: Address,
+    requestOrder: RequestOrder,
+    items: Item[]
+  ) {
+    this.client = client;
+    this.fromAddress = fromAddress;
+    this.requestOrder = requestOrder;
+    this.items = items;
+  }
 }

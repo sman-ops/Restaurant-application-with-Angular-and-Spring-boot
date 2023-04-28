@@ -6,7 +6,10 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
+import { CartOrder } from 'src/app/model/cart-order';
 import { Country } from 'src/app/model/country';
+import { Item } from 'src/app/model/item';
+import { RequestOrder } from 'src/app/model/request-order';
 import { State } from 'src/app/model/state';
 import { CardServiceService } from 'src/app/service/card-service.service';
 import { StateCountryServiceService } from 'src/app/service/state-country-service.service';
@@ -88,10 +91,23 @@ export class CheckOutComponent implements OnInit {
 
   done() {
     // console.log(this.checkoutParentGroup.get('data')?.value);
+    // console.log(this.checkoutParentGroup.get('data.fullName')?.value);
+    console.log(this.checkoutParentGroup.controls['data'].value);
 
     if (this.checkoutParentGroup.invalid) {
       this.checkoutParentGroup.markAllAsTouched();
     } else {
+      let client = this.checkoutParentGroup.controls['data'].value;
+      let fromAddress = this.checkoutParentGroup.controls['fromPerson'].value;
+      let toAddress = this.checkoutParentGroup.controls['toPerson'].value;
+      let requestOrder = new RequestOrder(0, 0);
+      requestOrder.totalPrice = this.totalPrices;
+      requestOrder.totalQuantity = this.totalOrders;
+      let items: Item[] = [];
+      let orders: CartOrder[] = this.cardService.orders;
+      for (let i = 0; i < orders.length; i++) {
+        items[i] = new Item(orders[i]);
+      }
     }
   }
 

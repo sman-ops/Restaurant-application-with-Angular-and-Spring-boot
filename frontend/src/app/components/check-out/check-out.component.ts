@@ -6,6 +6,7 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Address } from 'src/app/model/address';
 import { CartOrder } from 'src/app/model/cart-order';
 import { Client } from 'src/app/model/client';
@@ -36,7 +37,8 @@ export class CheckOutComponent implements OnInit {
     private formChildGroup: FormBuilder,
     private stateCountry: StateCountryServiceService,
     private cardService: CardServiceService,
-    private ps: PurchaseServiceService
+    private ps: PurchaseServiceService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -97,7 +99,7 @@ export class CheckOutComponent implements OnInit {
   done() {
     // console.log(this.checkoutParentGroup.get('data')?.value);
     // console.log(this.checkoutParentGroup.get('data.fullName')?.value);
-    console.log(this.checkoutParentGroup.controls['data'].value);
+    // console.log(this.checkoutParentGroup.controls['data'].value);
 
     if (this.checkoutParentGroup.invalid) {
       this.checkoutParentGroup.markAllAsTouched();
@@ -122,28 +124,43 @@ export class CheckOutComponent implements OnInit {
       let requestOrder = new RequestOrder(0, 0);
       requestOrder.totalPrice = this.totalPrices;
       requestOrder.totalQuantity = this.totalOrders;
-      let items: Item[] = [];
+
       let orders: CartOrder[] = this.cardService.orders;
-      for (let i = 0; i < orders.length; i++) {
-        items[i] = new Item(orders[i]);
-      }
+      // Solution 1
+      // let items: Item[] = [];
+      // for (let i = 0; i < orders.length; i++) {
+      //   items[i] = new Item(orders[i]);
+      // }
+
+      // Solution 2
+      let items: Item[] = orders.map((order) => new Item(order));
       let purchaseRequest = new PurchaseRequest(
         client,
         fromAddress,
         requestOrder,
         items
       );
-      console.log(purchaseRequest.client);
-      console.log(purchaseRequest.fromAddress);
-      console.log(purchaseRequest.requestOrder);
-      console.log(purchaseRequest.items);
+
+      // console.log(purchaseRequest.requestOrder);
+      // console.log(purchaseRequest.items);
       this.ps.getOrder(purchaseRequest).subscribe({
         next: (response) => {
-          alert('ok');
+          alert(
+            'your name  is :' + response.name + 'your code ' + response.code
+          );
+          this.clean();
         },
         error: (error) => {},
       });
     }
+  }
+
+  clean() {
+    this.cardService.orders = [];
+    this.cardService.totalOrders.next(0);
+    this.cardService.totalprice.next(0);
+    this.checkoutParentGroup.reset();
+    this.router.navigateByUrl('/orders');
   }
 
   similarGroup(event: Event) {

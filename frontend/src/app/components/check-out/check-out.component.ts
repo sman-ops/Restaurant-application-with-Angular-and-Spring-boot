@@ -6,12 +6,16 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
+import { Address } from 'src/app/model/address';
 import { CartOrder } from 'src/app/model/cart-order';
+import { Client } from 'src/app/model/client';
 import { Country } from 'src/app/model/country';
 import { Item } from 'src/app/model/item';
+import { PurchaseRequest } from 'src/app/model/purchase-request';
 import { RequestOrder } from 'src/app/model/request-order';
 import { State } from 'src/app/model/state';
 import { CardServiceService } from 'src/app/service/card-service.service';
+import { PurchaseServiceService } from 'src/app/service/purchase-service.service';
 import { StateCountryServiceService } from 'src/app/service/state-country-service.service';
 
 @Component({
@@ -31,7 +35,8 @@ export class CheckOutComponent implements OnInit {
   constructor(
     private formChildGroup: FormBuilder,
     private stateCountry: StateCountryServiceService,
-    private cardService: CardServiceService
+    private cardService: CardServiceService,
+    private ps: PurchaseServiceService
   ) {}
 
   ngOnInit(): void {
@@ -97,9 +102,23 @@ export class CheckOutComponent implements OnInit {
     if (this.checkoutParentGroup.invalid) {
       this.checkoutParentGroup.markAllAsTouched();
     } else {
-      let client = this.checkoutParentGroup.controls['data'].value;
-      let fromAddress = this.checkoutParentGroup.controls['fromPerson'].value;
-      let toAddress = this.checkoutParentGroup.controls['toPerson'].value;
+      let client: Client = new Client(
+        this.checkoutParentGroup.controls['data'].value.fullName,
+        this.checkoutParentGroup.controls['data'].value.gmail,
+        this.checkoutParentGroup.controls['data'].value.phone
+      );
+
+      let fromAddress = new Address(
+        this.checkoutParentGroup.controls['fromPerson'].value.country,
+        this.checkoutParentGroup.controls['fromPerson'].value.state['name'],
+        this.checkoutParentGroup.controls['fromPerson'].value.zipCode,
+        this.checkoutParentGroup.controls['toPerson'].value.country,
+        this.checkoutParentGroup.controls['toPerson'].value.state['name'],
+        this.checkoutParentGroup.controls['toPerson'].value.zipCode
+      );
+      // fromAddress.state = fromAddress.state['name'];
+
+      // let toAddress = this.checkoutParentGroup.controls['toPerson'].value;
       let requestOrder = new RequestOrder(0, 0);
       requestOrder.totalPrice = this.totalPrices;
       requestOrder.totalQuantity = this.totalOrders;
@@ -108,6 +127,22 @@ export class CheckOutComponent implements OnInit {
       for (let i = 0; i < orders.length; i++) {
         items[i] = new Item(orders[i]);
       }
+      let purchaseRequest = new PurchaseRequest(
+        client,
+        fromAddress,
+        requestOrder,
+        items
+      );
+      console.log(purchaseRequest.client);
+      console.log(purchaseRequest.fromAddress);
+      console.log(purchaseRequest.requestOrder);
+      console.log(purchaseRequest.items);
+      this.ps.getOrder(purchaseRequest).subscribe({
+        next: (response) => {
+          alert('ok');
+        },
+        error: (error) => {},
+      });
     }
   }
 

@@ -1,6 +1,6 @@
 package com.spring.restaurant.config;
 
-public class DataRestApiConfig {
+public class DataRestApiConfig  {
 	
 	
 	

@@ -35,7 +35,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 			.csrf().disable()
 			.authorizeRequests()
 			.antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
-			.anyRequest().permitAll()
+			.anyRequest().authenticated()
 			.and()
 			.httpBasic();
 	}
@@ -44,7 +44,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	DaoAuthenticationProvider authentificationProvider() {
 		DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
 		daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
-	 daoAuthenticationProvider.setUserDetailsService(userService);
+	    daoAuthenticationProvider.setUserDetailsService(userService);
 		return daoAuthenticationProvider;
 	}
 	

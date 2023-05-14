@@ -34,7 +34,7 @@ public class JwtAuthenticationFilter  {
 	        this.authenticationManager = authenticationManager;
 	    }
 	    
-	  public String generateToken(Authentication authResult) {
+	  private String generateToken(Authentication authResult) {
 	    	
 
 	    	UserPrincipal principal = (UserPrincipal) authResult.getPrincipal();

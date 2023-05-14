@@ -5,9 +5,13 @@ import { CheckOutComponent } from './components/check-out/check-out.component';
 import { OrderItemsComponent } from './components/order-items/order-items.component';
 import { OrdersDetailsComponent } from './components/orders-details/orders-details.component';
 import { PurchasesComponent } from './components/purchases/purchases.component';
+import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 const routes: Routes = [
   // http://localhost:4200/category/2
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
   { path: 'checkout', component: CheckOutComponent },
   { path: 'purchases', component: PurchasesComponent },
   { path: 'category/:id', component: OrderItemsComponent },

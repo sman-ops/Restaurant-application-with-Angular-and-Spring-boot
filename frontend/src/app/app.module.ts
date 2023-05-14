@@ -14,6 +14,8 @@ import { CardStatusComponent } from './components/card-status/card-status.compon
 import { PurchasesComponent } from './components/purchases/purchases.component';
 import { CheckOutComponent } from './components/check-out/check-out.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +27,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CardStatusComponent,
     PurchasesComponent,
     CheckOutComponent,
+    LoginComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,

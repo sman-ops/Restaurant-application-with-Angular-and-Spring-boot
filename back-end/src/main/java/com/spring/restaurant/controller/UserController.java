@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.restaurant.config.springsecurity.jwt.JwtAuthenticationFilter;
 import com.spring.restaurant.dto.JwtLogin;
+import com.spring.restaurant.dto.LoginResponse;
 
 @RestController
 @CrossOrigin("http://localhost:4200")
@@ -20,7 +21,7 @@ public class UserController {
 	private JwtAuthenticationFilter jwtAuthenticationFilter;
 	
 	@PostMapping("/login")
-	public String logIn(@RequestBody JwtLogin jwtLogin) {
+	public LoginResponse logIn(@RequestBody JwtLogin jwtLogin) {
 		
 		return jwtAuthenticationFilter.login(jwtLogin);
 		

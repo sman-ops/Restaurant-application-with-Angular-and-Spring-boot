@@ -1,6 +1,8 @@
 package com.spring.restaurant.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -40,7 +42,7 @@ public class User extends BaseEntity {
 			inverseJoinColumns = @JoinColumn(name="authorities_id")
 			
 			)
-	private Set<Authorities> authorities = new HashSet<>();
+	private List<Authorities> authorities =new ArrayList();
 	
 	
 

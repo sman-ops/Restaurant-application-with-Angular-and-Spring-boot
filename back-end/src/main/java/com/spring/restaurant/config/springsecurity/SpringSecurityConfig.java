@@ -23,18 +23,16 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UserService userService;
 	
-	@Override
-	public void configure (AuthenticationManagerBuilder auth ) throws Exception{
-		
-		auth.authenticationProvider(authentificationProvider());
-		
-	}
+	 @Override
+	    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+	        auth.authenticationProvider(authenticationProvider());
+	    }
 	
-	@Bean(BeanIds.AUTHENTICATION_MANAGER)
-	@Override
-	public AuthenticationManager authenticationManagerBean() throws Exception {
-		return super.authenticationManagerBean();
-	}
+	 @Bean(BeanIds.AUTHENTICATION_MANAGER)
+	    @Override
+	    public AuthenticationManager authenticationManagerBean() throws Exception {
+	        return super.authenticationManagerBean();
+	    }
 	
 	
 	@Override
@@ -46,23 +44,25 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 			.authorizeRequests()
 			.antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
+			.antMatchers("/login").permitAll()
 			.anyRequest().authenticated()
 			.and()
 			.httpBasic();
+			
 	}
 	
-	@Bean
-	DaoAuthenticationProvider authentificationProvider() {
-		DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
-		daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
-	    daoAuthenticationProvider.setUserDetailsService(userService);
-		return daoAuthenticationProvider;
-	}
 	
-	@Bean
-	PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+	 @Bean
+	    DaoAuthenticationProvider authenticationProvider(){
+	        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+	        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+	        daoAuthenticationProvider.setUserDetailsService(userService);
+	        return daoAuthenticationProvider;
+	    }
+	    @Bean
+	    PasswordEncoder passwordEncoder(){
+	        return new BCryptPasswordEncoder();
+	    }
 	
 	
 	

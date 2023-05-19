@@ -20,7 +20,7 @@ import java.io.IOException;
 
 import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
 
-public class JwtAuthorizationFilter extends BasicAuthenticationFilter  {
+public class JwtAuthorizationFilter extends BasicAuthenticationFilter{
 	
 	    private UserRepository userRepository;
 
@@ -39,7 +39,6 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter  {
 	            chain.doFilter(request, response);
 	            return;
 	        }
-	/////////////////////////
 	        // If header is present, try grab user principal from database and perform authorization
 	        Authentication authentication = getUsernamePasswordAuthentication(request);
 	        SecurityContextHolder.getContext().setAuthentication(authentication);

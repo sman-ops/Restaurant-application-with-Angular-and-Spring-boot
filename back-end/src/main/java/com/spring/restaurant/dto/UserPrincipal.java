@@ -22,14 +22,14 @@ public class UserPrincipal implements UserDetails {
 	}
 
 	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		List<GrantedAuthority> authorities = new ArrayList<>();
-		user.getAuthorities().forEach(temp -> {
-			GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(temp.getRoleName());
-			authorities.add(grantedAuthority);
-		});
-		return authorities;
-	}
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        user.getAuthorities().forEach(temp -> {
+            GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(temp.getRoleName());
+            authorities.add(grantedAuthority);
+        });
+        return authorities;
+    }
 
 	@Override
 	public String getPassword() {
@@ -44,22 +44,19 @@ public class UserPrincipal implements UserDetails {
 	}
 
 	@Override
-	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    public boolean isAccountNonExpired() {
+        return true;
+    }
 
-	@Override
-	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
 
-	@Override
-	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
 
 	@Override
 	public boolean isEnabled() {

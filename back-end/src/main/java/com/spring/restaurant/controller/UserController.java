@@ -34,8 +34,8 @@ public class UserController {
 	PasswordEncoder passwordEncoder;
 	
 	
-	@PostMapping("/login")
-	public String logIn(@RequestBody JwtLogin jwtLogin) {
+	@PostMapping("/signin")
+	public LoginResponse logIn(@RequestBody JwtLogin jwtLogin) {
 		
 		return jwtAuthenticationFilter.login(jwtLogin);
 		

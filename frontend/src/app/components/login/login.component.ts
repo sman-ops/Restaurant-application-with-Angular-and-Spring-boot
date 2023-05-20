@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit {
       )
       .subscribe({
         next: (response) => {
+          // console.log(response);
           this.router.navigateByUrl('/orders');
         },
         error: (err) => {

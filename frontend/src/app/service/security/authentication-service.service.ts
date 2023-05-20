@@ -12,7 +12,16 @@ export class AuthenticationServiceService {
 
   public executeAuthentication(email: any, password: any): Observable<any> {
     return this.http
-      .post<any>(`${this.apiServerUrl}/login`, { email, password })
+      .post<any>(`${this.apiServerUrl}/signin`, { email, password })
+      .pipe(map((response: any) => response));
+  }
+
+  public createUser(email: any, password: any): Observable<any> {
+    return this.http
+      .post<any>(`${this.apiServerUrl}/signup`, {
+        email,
+        password,
+      })
       .pipe(map((response: any) => response));
   }
 }

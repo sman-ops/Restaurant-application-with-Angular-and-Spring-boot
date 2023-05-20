@@ -14,14 +14,22 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.spring.restaurant.config.springsecurity.jwt.JwtAuthorizationFilter;
+import com.spring.restaurant.repository.UserRepository;
 import com.spring.restaurant.service.UserService;
 
 @Configuration
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	
-	@Autowired
-	private UserService userService;
+	 private UserService userService;
+	 private UserRepository userRepository;
+	 
+	  @Autowired
+	    public SpringSecurityConfig(UserService userService, UserRepository userRepository) {
+	        this.userService = userService;
+	        this.userRepository = userRepository;
+	    }
 	
 	 @Override
 	    public void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -42,9 +50,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 			.csrf().disable()
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 			.and()
+			.addFilter(new JwtAuthorizationFilter(authenticationManager(),userRepository))
 			.authorizeRequests()
-			.antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
-			.antMatchers("/login").permitAll()
+			.antMatchers("/signin").permitAll()
+			.antMatchers("/signup").permitAll()
 			.anyRequest().authenticated()
 			.and()
 			.httpBasic();

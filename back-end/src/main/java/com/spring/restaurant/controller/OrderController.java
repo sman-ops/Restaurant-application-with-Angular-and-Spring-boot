@@ -15,7 +15,7 @@ import com.spring.restaurant.model.Order;
 import com.spring.restaurant.service.OrderService;
 
 @RestController
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/")
 public class OrderController {
 	
@@ -28,6 +28,7 @@ public class OrderController {
 	
 	
 	 // http://localhost/api/allOrders?page={value}&size={value}
+	
 	@GetMapping("allOrders")
 	public ResponseEntity<List<Order>> getAllOrders(@RequestParam int page,@RequestParam int size){
 		List<Order> orders= orderService.allOrders(page,size);

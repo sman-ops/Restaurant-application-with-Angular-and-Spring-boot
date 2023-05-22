@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Order } from '../../app/model/order';
 import { map } from 'rxjs/operators';
@@ -9,13 +9,23 @@ import { map } from 'rxjs/operators';
 })
 export class OrderService {
   private apiServerUrl = environment.apiBaseUrl;
+
   constructor(private http: HttpClient) {}
 
   // dans get<Order[]> : la méthode get nous retourne array of order
   public getOrders(page: any, size: any): Observable<Order[]> {
-    return this.http.get<Order[]>(
-      `${this.apiServerUrl}/api/allOrders?page=${page}&size=${size}`
+    let headers = new HttpHeaders();
+    headers = headers.set(
+      'Authorization',
+      JSON.stringify(localStorage.getItem('token'))
     );
+
+    return this.http
+      .get<Order[]>(
+        `${this.apiServerUrl}/api/allOrders?page=${page}&size=${size}`,
+        { headers: headers }
+      )
+      .pipe(map((response: Order[]) => response));
   }
 
   public getOrdersByCategoryId(
@@ -23,14 +33,18 @@ export class OrderService {
     page: any,
     size: any
   ): Observable<Order[]> {
-    return this.http.get<Order[]>(
-      `${this.apiServerUrl}/api/category?id=${id}&page=${page}&size=${size}`
-    );
+    return this.http
+      .get<Order[]>(
+        `${this.apiServerUrl}/api/category?id=${id}&page=${page}&size=${size}`
+      )
+      .pipe(map((response: Order[]) => response));
   }
   public getOrdersByKey(word: any, page: any, size: any): Observable<Order[]> {
-    return this.http.get<Order[]>(
-      `${this.apiServerUrl}/api/orderKey?word=${word}&page=${page}&size=${size}`
-    );
+    return this.http
+      .get<Order[]>(
+        `${this.apiServerUrl}/api/orderKey?word=${word}&page=${page}&size=${size}`
+      )
+      .pipe(map((response: Order[]) => response));
   }
 
   public getOrderById(id: any): Observable<Order> {
@@ -40,18 +54,23 @@ export class OrderService {
   }
 
   public getOrdersLength(): Observable<number> {
-    return this.http.get<number>(`${this.apiServerUrl}/api/orderSize`);
+    let head = new HttpHeaders({
+      Authorization: JSON.stringify(localStorage.getItem('token')),
+    });
+    return this.http
+      .get<number>(`${this.apiServerUrl}/api/orderSize`, { headers: head })
+      .pipe(map((response: number) => response));
   }
 
   public getOrdersLengthByCategoryId(id: any): Observable<number> {
-    return this.http.get<number>(
-      `${this.apiServerUrl}/api/categoryidSize?id=${id}`
-    );
+    return this.http
+      .get<number>(`${this.apiServerUrl}/api/categoryidSize?id=${id}`)
+      .pipe(map((response: number) => response));
   }
 
   public getOrdersLengthKey(word: any): Observable<number> {
-    return this.http.get<number>(
-      `${this.apiServerUrl}/api/keySize?key=${word}`
-    );
+    return this.http
+      .get<number>(`${this.apiServerUrl}/api/keySize?key=${word}`)
+      .pipe(map((response: number) => response));
   }
 }

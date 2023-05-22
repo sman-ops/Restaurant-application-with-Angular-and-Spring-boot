@@ -48,7 +48,6 @@ public class UserController {
 		user.setPassword(passwordEncoder.encode(jwtLogin.getPassword()));
 		user.setActive(1);
 		user.getAuthorities().add(authoritiesService.getAuthorities().get(0));
-		user.getAuthorities().add(authoritiesService.getAuthorities().get(1));
 		userService.addUser(user);
 		
 		

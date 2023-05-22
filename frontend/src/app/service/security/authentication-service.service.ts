@@ -13,7 +13,11 @@ export class AuthenticationServiceService {
   public executeAuthentication(email: any, password: any): Observable<any> {
     return this.http
       .post<any>(`${this.apiServerUrl}/signin`, { email, password })
-      .pipe(map((response: any) => response));
+      .pipe(
+        map((response: any) =>
+          localStorage.setItem('token', `Bearer ${response.token}`)
+        )
+      );
   }
 
   public createUser(email: any, password: any): Observable<any> {

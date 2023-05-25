@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { OrderItemsComponent } from './components/order-items/order-items.component';
@@ -16,6 +16,7 @@ import { CheckOutComponent } from './components/check-out/check-out.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { HttpInterceptorBaseAuthService } from './service/security/http-interceptor-base-auth.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +38,13 @@ import { SignupComponent } from './components/signup/signup.component';
     NgbPaginationModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorBaseAuthService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

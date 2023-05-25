@@ -14,14 +14,9 @@ export class OrderService {
 
   // dans get<Order[]> : la méthode get nous retourne array of order
   public getOrders(page: any, size: any): Observable<Order[]> {
-    let head = new HttpHeaders({
-      Authorization: JSON.parse(localStorage.getItem('token') || ''),
-    });
-
     return this.http
       .get<Order[]>(
-        `${this.apiServerUrl}/api/allOrders?page=${page}&size=${size}`,
-        { headers: head }
+        `${this.apiServerUrl}/api/allOrders?page=${page}&size=${size}`
       )
       .pipe(map((response: Order[]) => response));
   }
@@ -72,3 +67,10 @@ export class OrderService {
       .pipe(map((response: number) => response));
   }
 }
+
+/*  let head = new HttpHeaders({
+      Authorization: JSON.parse(localStorage.getItem('token') || ''),
+    });
+*/
+
+// { headers: head }

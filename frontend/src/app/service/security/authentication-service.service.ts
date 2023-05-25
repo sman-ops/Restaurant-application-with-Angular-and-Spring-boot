@@ -15,10 +15,8 @@ export class AuthenticationServiceService {
       .post<any>(`${this.apiServerUrl}/signin`, { email, password })
       .pipe(
         map((response) => {
-          localStorage.setItem(
-            'token',
-            JSON.stringify(`Bearer ${response.token}`)
-          );
+          localStorage.setItem('email', response.email);
+          localStorage.setItem('token', `Bearer ${response.token}`);
         })
       );
   }
@@ -30,5 +28,19 @@ export class AuthenticationServiceService {
         password,
       })
       .pipe(map((response: any) => response));
+  }
+
+  // verify if a user is logged in or not
+
+  public getAuthentication() {
+    return localStorage.getItem('email') ? localStorage.getItem('email') : '';
+  }
+
+  public getToken() {
+    if (this.getAuthentication()) {
+      return localStorage.getItem('token');
+    } else {
+      return '';
+    }
   }
 }

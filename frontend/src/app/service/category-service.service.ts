@@ -12,13 +12,8 @@ export class CategoryServiceService {
   constructor(private http: HttpClient) {}
 
   public getAllCategories(): Observable<Category[]> {
-    let head = new HttpHeaders({
-      Authorization: JSON.parse(localStorage.getItem('token') || ''),
-    });
     return this.http
-      .get<Category[]>(`${this.apiServerUrl}/api/allCategories`, {
-        headers: head,
-      })
+      .get<Category[]>(`${this.apiServerUrl}/api/allCategories`)
       .pipe(map((response: Category[]) => response));
   }
 }

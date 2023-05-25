@@ -13,7 +13,7 @@ import com.spring.restaurant.model.State;
 import com.spring.restaurant.service.StateService;
 
 @RestController
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api")
 public class StateController {
 	

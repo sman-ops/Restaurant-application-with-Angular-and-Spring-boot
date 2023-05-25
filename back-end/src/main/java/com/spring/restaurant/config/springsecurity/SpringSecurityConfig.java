@@ -55,7 +55,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		// csrf prevent any requests comes from frontend
 		http
 			
-		   
+		   	.cors()
+		   	.and()
 			.csrf().disable()
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 			.and()
@@ -66,7 +67,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/signup").permitAll()
 			.anyRequest().authenticated();
 			
-			
+		 // .antMatchers("/api/allOrders").permitAll()
 			
 	}
 	

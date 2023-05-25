@@ -16,7 +16,7 @@ import com.spring.restaurant.service.AuthoritiesService;
 import com.spring.restaurant.service.UserService;
 
 @RestController
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping
 public class UserController {
 	

@@ -15,7 +15,7 @@ import com.spring.restaurant.model.Order;
 import com.spring.restaurant.service.CategoryService;
 
 @RestController
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api/")
 public class CategoryController {
 

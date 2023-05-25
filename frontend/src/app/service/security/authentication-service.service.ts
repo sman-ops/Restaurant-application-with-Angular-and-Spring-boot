@@ -14,9 +14,12 @@ export class AuthenticationServiceService {
     return this.http
       .post<any>(`${this.apiServerUrl}/signin`, { email, password })
       .pipe(
-        map((response: any) =>
-          localStorage.setItem('token', `Bearer ${response.token}`)
-        )
+        map((response) => {
+          localStorage.setItem(
+            'token',
+            JSON.stringify(`Bearer ${response.token}`)
+          );
+        })
       );
   }
 

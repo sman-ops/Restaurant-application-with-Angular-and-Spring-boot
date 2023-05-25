@@ -12,7 +12,7 @@ import com.spring.restaurant.dto.PurchaseResponse;
 import com.spring.restaurant.service.PurchaseService;
 
 @RestController
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api/buy")
 public class PurchasesController {
 	

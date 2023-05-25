@@ -14,16 +14,14 @@ export class OrderService {
 
   // dans get<Order[]> : la méthode get nous retourne array of order
   public getOrders(page: any, size: any): Observable<Order[]> {
-    let headers = new HttpHeaders();
-    headers = headers.set(
-      'Authorization',
-      JSON.stringify(localStorage.getItem('token'))
-    );
+    let head = new HttpHeaders({
+      Authorization: JSON.parse(localStorage.getItem('token') || ''),
+    });
 
     return this.http
       .get<Order[]>(
         `${this.apiServerUrl}/api/allOrders?page=${page}&size=${size}`,
-        { headers: headers }
+        { headers: head }
       )
       .pipe(map((response: Order[]) => response));
   }

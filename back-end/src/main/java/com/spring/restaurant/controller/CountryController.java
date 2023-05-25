@@ -11,7 +11,7 @@ import com.spring.restaurant.model.Country;
 import com.spring.restaurant.service.CountryService;
 
 @RestController
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/api")
 public class CountryController {
 	

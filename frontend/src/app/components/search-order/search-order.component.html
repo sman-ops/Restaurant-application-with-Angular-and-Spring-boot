@@ -1,4 +1,4 @@
-<div class="d-flex myform">
+<div *ngIf="isAuthenticateUser()" class="d-flex myform">
   <input
     (keyup)="doSearch(key.value)"
     #key
@@ -14,20 +14,20 @@
   >
     Search
   </button>
-  <button
-    routerLink="/login"
-    *ngIf="!isAuthenticateUser()"
-    class="log btn btn-outline-primary"
-    type="submit"
-  >
-    Login
-  </button>
-  <button
-    *ngIf="isAuthenticateUser()"
-    class="log btn btn-outline-danger"
-    type="submit"
-    (click)="logout()"
-  >
-    Logout
-  </button>
 </div>
+<button
+  routerLink="/login"
+  *ngIf="!isAuthenticateUser()"
+  class="log btn btn-outline-primary"
+  type="submit"
+>
+  Login
+</button>
+<button
+  *ngIf="isAuthenticateUser()"
+  class="log btn btn-outline-danger"
+  type="submit"
+  (click)="logout()"
+>
+  Logout
+</button>

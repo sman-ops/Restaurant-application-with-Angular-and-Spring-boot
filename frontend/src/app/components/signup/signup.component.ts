@@ -31,6 +31,10 @@ export class SignupComponent implements OnInit {
   }
 
   signup() {
+    if (this.checkoutParentGroup.invalid) {
+      this.checkoutParentGroup.markAllAsTouched();
+      return;
+    }
     this.auth
       .createUser(
         this.checkoutParentGroup.controls['user'].value.email,

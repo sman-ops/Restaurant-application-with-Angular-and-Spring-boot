@@ -6,7 +6,7 @@ import { AuthenticationServiceService } from 'src/app/service/security/authentic
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css'],
+  styleUrls: ['./signup.component.css', '../../../assets/css/login-signup.css'],
 })
 export class SignupComponent implements OnInit {
   checkoutParentGroup!: FormGroup;

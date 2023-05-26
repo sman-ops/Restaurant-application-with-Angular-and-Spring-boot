@@ -43,4 +43,16 @@ export class AuthenticationServiceService {
       return '';
     }
   }
+
+  public isLogin() {
+    return !(
+      localStorage.getItem('email') == null ||
+      localStorage.getItem('token') == null
+    );
+  }
+
+  public logOut() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('email');
+  }
 }

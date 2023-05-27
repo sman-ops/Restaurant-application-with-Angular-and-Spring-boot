@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
+import { CookieService } from 'ngx-cookie-service';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationServiceService {
   private apiServerUrl = environment.apiBaseUrl;
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private cook: CookieService) {}
 
   public executeAuthentication(email: any, password: any): Observable<any> {
     return this.http
@@ -17,6 +18,8 @@ export class AuthenticationServiceService {
         map((response) => {
           localStorage.setItem('email', response.email);
           localStorage.setItem('token', `Bearer ${response.token}`);
+          this.cook.set('email', response.email);
+          this.cook.set('token', `Bearer ${response.token}`);
         })
       );
   }
@@ -54,5 +57,7 @@ export class AuthenticationServiceService {
   public logOut() {
     localStorage.removeItem('token');
     localStorage.removeItem('email');
+    this.cook.delete('email');
+    this.cook.delete('token');
   }
 }

@@ -17,6 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { HttpInterceptorBaseAuthService } from './service/security/http-interceptor-base-auth.service';
+import { CookieService } from 'ngx-cookie-service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +45,7 @@ import { HttpInterceptorBaseAuthService } from './service/security/http-intercep
       useClass: HttpInterceptorBaseAuthService,
       multi: true,
     },
+    CookieService,
   ],
   bootstrap: [AppComponent],
 })

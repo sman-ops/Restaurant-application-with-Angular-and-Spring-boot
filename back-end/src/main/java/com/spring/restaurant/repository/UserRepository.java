@@ -10,5 +10,7 @@ import com.spring.restaurant.model.User;
 public interface UserRepository extends JpaRepository<User,Long> {
 	
 	public User findByEmail(String email);
+	
+	public boolean existsByEmail(String email);
 
 }

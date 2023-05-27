@@ -7,18 +7,56 @@ import { OrdersDetailsComponent } from './components/orders-details/orders-detai
 import { PurchasesComponent } from './components/purchases/purchases.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { RouteActivateService } from './service/activated/route-activate.service';
+import { LoginActiveService } from './service/activated/login-active.service';
 
 const routes: Routes = [
   // http://localhost:4200/category/2
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent },
-  { path: 'checkout', component: CheckOutComponent },
-  { path: 'purchases', component: PurchasesComponent },
-  { path: 'category/:id', component: OrderItemsComponent },
-  { path: 'order/:id', component: OrdersDetailsComponent },
-  { path: 'category', component: OrderItemsComponent },
-  { path: 'orders/:key  ', component: OrderItemsComponent },
-  { path: 'orders', component: OrderItemsComponent },
+  {
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [LoginActiveService],
+  },
+  {
+    path: 'signup',
+    component: SignupComponent,
+    canActivate: [LoginActiveService],
+  },
+  {
+    path: 'checkout',
+    component: CheckOutComponent,
+    canActivate: [RouteActivateService],
+  },
+  {
+    path: 'purchases',
+    component: PurchasesComponent,
+    canActivate: [RouteActivateService],
+  },
+  {
+    path: 'category/:id',
+    component: OrderItemsComponent,
+    canActivate: [RouteActivateService],
+  },
+  {
+    path: 'order/:id',
+    component: OrdersDetailsComponent,
+    canActivate: [RouteActivateService],
+  },
+  {
+    path: 'category',
+    component: OrderItemsComponent,
+    canActivate: [RouteActivateService],
+  },
+  {
+    path: 'orders/:key  ',
+    component: OrderItemsComponent,
+    canActivate: [RouteActivateService],
+  },
+  {
+    path: 'orders',
+    component: OrderItemsComponent,
+    canActivate: [RouteActivateService],
+  },
   { path: '', redirectTo: '/orders', pathMatch: 'full' },
   // if user enter  anything without  all routes
   // { path: '**', redirectTo: '/orders', pathMatch: 'full' },

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.restaurant.config.springsecurity.jwt.JwtAuthenticationFilter;
 import com.spring.restaurant.dto.AccountResponse;
+import com.spring.restaurant.dto.ActiveAccount;
 import com.spring.restaurant.dto.JwtLogin;
 import com.spring.restaurant.dto.LoginResponse;
 import com.spring.restaurant.dto.Mail;
@@ -95,6 +96,21 @@ public class UserController {
 			
 		}
 		return userActive;
+	}
+	
+
+	@PostMapping("/activated")
+	public AccountResponse activeAccount(@RequestBody ActiveAccount activeAccount) {
+		User user = userService.getUserByEmail(activeAccount.getMail());
+		AccountResponse accountResponse = new AccountResponse();
+		if(user.getCode().getCode().equals(activeAccount.getCode())) {
+			user.setActive(1);
+			userService.editUser(user);
+			accountResponse.setResult(1);
+		}else {
+			accountResponse.setResult(0);
+		}
+		return accountResponse;
 	}
 
 }

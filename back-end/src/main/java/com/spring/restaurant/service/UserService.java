@@ -43,8 +43,23 @@ public class UserService implements UserDetailsService {
 		return userRepository.getActive(email);
 	}
 	
+	//@transactional  just for method that have @Query
+	
+	@Transactional
 	public String getPasswordByEmail(String email) {
 		return userRepository.getPasswordByEmail(email);
 	}
+	
+	
+	public User getUserByEmail(String email) {
+		return this.userRepository.findByEmail(email);
+		
+	}
+	
+	public void editUser(User user) {
+		this.userRepository.save(user);
+	}
+	
+	
 
 }

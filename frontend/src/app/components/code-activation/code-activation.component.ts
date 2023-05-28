@@ -19,7 +19,10 @@ export class CodeActivationComponent implements OnInit {
   checkoutParentGroup!: FormGroup;
   constructor(private formChildGroup: FormBuilder) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.email = localStorage.getItem('emailActive') || '';
+    this.myFormLogin();
+  }
 
   myFormLogin() {
     this.checkoutParentGroup = this.formChildGroup.group({

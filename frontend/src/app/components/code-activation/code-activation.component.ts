@@ -5,6 +5,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthenticationServiceService } from 'src/app/service/security/authentication-service.service';
 
 @Component({
   selector: 'app-code-activation',
@@ -17,7 +19,11 @@ import {
 export class CodeActivationComponent implements OnInit {
   email: string = '';
   checkoutParentGroup!: FormGroup;
-  constructor(private formChildGroup: FormBuilder) {}
+  constructor(
+    private formChildGroup: FormBuilder,
+    private auth: AuthenticationServiceService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.email = localStorage.getItem('emailActive') || '';
@@ -41,5 +47,20 @@ export class CodeActivationComponent implements OnInit {
       this.checkoutParentGroup.markAllAsTouched();
       return;
     }
+    this.auth
+      .activeAccount(
+        this.email,
+        this.checkoutParentGroup.controls['user'].value.code
+      )
+      .subscribe({
+        next: (response) => {
+          if (response.result === 1) {
+            localStorage.removeItem('emailActive');
+            this.router.navigateByUrl('/login');
+          } else {
+            alert('invalid code');
+          }
+        },
+      });
   }
 }

@@ -57,6 +57,10 @@ export class LoginComponent implements OnInit {
                 },
               });
           } else if (ac === 0) {
+            localStorage.setItem(
+              'emailActive',
+              this.checkoutParentGroup.controls['user'].value.email
+            );
             this.router.navigateByUrl('/active');
           } else {
             alert('invalid email or pass');

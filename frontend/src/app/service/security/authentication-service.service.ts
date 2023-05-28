@@ -43,6 +43,19 @@ export class AuthenticationServiceService {
       .pipe(map((response: any) => response));
   }
 
+  public activeAccount(mail: any, code: any): Observable<any> {
+    return this.http
+      .post<any>(`${this.apiServerUrl}/activated`, {
+        mail,
+        code,
+      })
+      .pipe(
+        map((response: any) => {
+          return response;
+        })
+      );
+  }
+
   // verify if a user is logged in or not
 
   public getAuthentication() {

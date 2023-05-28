@@ -10,6 +10,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { RouteActivateService } from './service/activated/route-activate.service';
 import { LoginActiveService } from './service/activated/login-active.service';
 import { CodeActivationComponent } from './components/code-activation/code-activation.component';
+import { AccountServiceService } from './service/activated/account-service.service';
 
 const routes: Routes = [
   // http://localhost:4200/category/2
@@ -17,6 +18,7 @@ const routes: Routes = [
   {
     path: 'active',
     component: CodeActivationComponent,
+    canActivate: [LoginActiveService, AccountServiceService],
   },
   {
     path: 'login',

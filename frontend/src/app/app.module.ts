@@ -18,6 +18,7 @@ import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { HttpInterceptorBaseAuthService } from './service/security/http-interceptor-base-auth.service';
 import { CookieService } from 'ngx-cookie-service';
+import { CodeActivationComponent } from './components/code-activation/code-activation.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +32,7 @@ import { CookieService } from 'ngx-cookie-service';
     CheckOutComponent,
     LoginComponent,
     SignupComponent,
+    CodeActivationComponent,
   ],
   imports: [
     BrowserModule,

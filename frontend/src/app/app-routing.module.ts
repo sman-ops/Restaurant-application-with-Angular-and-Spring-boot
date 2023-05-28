@@ -9,9 +9,15 @@ import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { RouteActivateService } from './service/activated/route-activate.service';
 import { LoginActiveService } from './service/activated/login-active.service';
+import { CodeActivationComponent } from './components/code-activation/code-activation.component';
 
 const routes: Routes = [
   // http://localhost:4200/category/2
+
+  {
+    path: 'active',
+    component: CodeActivationComponent,
+  },
   {
     path: 'login',
     component: LoginComponent,

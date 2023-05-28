@@ -12,6 +12,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -43,6 +44,10 @@ public class User extends BaseEntity {
 			
 			)
 	private List<Authorities> authorities =new ArrayList();
+	
+	@OneToOne(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
+	@JoinColumn(name="code_id")
+	private Code code;
 	
 	
 

@@ -12,9 +12,13 @@ import com.spring.restaurant.config.springsecurity.jwt.JwtAuthenticationFilter;
 import com.spring.restaurant.dto.AccountResponse;
 import com.spring.restaurant.dto.JwtLogin;
 import com.spring.restaurant.dto.LoginResponse;
+import com.spring.restaurant.dto.Mail;
+import com.spring.restaurant.model.Code;
 import com.spring.restaurant.model.User;
 import com.spring.restaurant.service.AuthoritiesService;
+import com.spring.restaurant.service.EmailService;
 import com.spring.restaurant.service.UserService;
+import com.spring.restaurant.util.UserCode;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -34,6 +38,11 @@ public class UserController {
 	@Autowired
 	PasswordEncoder passwordEncoder;
 	
+	@Autowired
+	private EmailService emailService;
+	
+	private UserCode userCode = new UserCode();
+	
 	
 	@PostMapping("/signin")
 	public LoginResponse logIn(@RequestBody JwtLogin jwtLogin) {
@@ -52,11 +61,17 @@ public class UserController {
 			
 			
 		}else {
+			String myCode = userCode.getCode();
 			User user= new User();
 			user.setEmail(jwtLogin.getEmail());
 			user.setPassword(passwordEncoder.encode(jwtLogin.getPassword()));
-			user.setActive(1);
+			user.setActive(0);
 			user.getAuthorities().add(authoritiesService.getAuthorities().get(0));
+			Mail mail = new Mail(jwtLogin.getEmail(),myCode);
+		    emailService.sendCodeByMail(mail);
+		    Code code = new Code();
+		    code.setCode(myCode);
+		    user.setCode(code);
 			userService.addUser(user);
 			accountResponse.setResult(1);
 		}

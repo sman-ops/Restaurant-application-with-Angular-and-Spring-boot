@@ -28,4 +28,8 @@ export class AppComponent {
     }
     return true;
   }
+
+  isLogin() {
+    return this.auth.isLogin();
+  }
 }

@@ -24,6 +24,16 @@ export class AuthenticationServiceService {
       );
   }
 
+  public userActive(email: any, password: any): Observable<any> {
+    return this.http
+      .post<any>(`${this.apiServerUrl}/active`, { email, password })
+      .pipe(
+        map((response) => {
+          return response;
+        })
+      );
+  }
+
   public createUser(email: any, password: any): Observable<any> {
     return this.http
       .post<any>(`${this.apiServerUrl}/signup`, {

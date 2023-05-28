@@ -13,6 +13,7 @@ import com.spring.restaurant.dto.AccountResponse;
 import com.spring.restaurant.dto.JwtLogin;
 import com.spring.restaurant.dto.LoginResponse;
 import com.spring.restaurant.dto.Mail;
+import com.spring.restaurant.dto.UserActive;
 import com.spring.restaurant.model.Code;
 import com.spring.restaurant.model.User;
 import com.spring.restaurant.service.AuthoritiesService;
@@ -77,9 +78,23 @@ public class UserController {
 		}
 		
 		return accountResponse;
-		
-		
-		
+			
+	}
+	
+	@PostMapping("/active")
+	public UserActive getActiveUser(@RequestBody JwtLogin jwtlogin) {
+		String enPassword = userService.getPasswordByEmail(jwtlogin.getEmail()); // from DB
+		boolean result = passwordEncoder.matches(jwtlogin.getPassword(),enPassword);
+		UserActive userActive = new UserActive();
+		if(result) {
+			int act = userService.getUserActive(jwtlogin.getEmail());
+			userActive.setActive(act);
+			
+		}else {
+			userActive.setActive(-1);
+			
+		}
+		return userActive;
 	}
 
 }

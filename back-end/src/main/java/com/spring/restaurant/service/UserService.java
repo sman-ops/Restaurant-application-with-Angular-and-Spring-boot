@@ -37,5 +37,14 @@ public class UserService implements UserDetailsService {
 	public boolean ifEmailExists(String email) {
 		return userRepository.existsByEmail(email);
 	}
+	
+	@Transactional
+	public int getUserActive(String email) {
+		return userRepository.getActive(email);
+	}
+	
+	public String getPasswordByEmail(String email) {
+		return userRepository.getPasswordByEmail(email);
+	}
 
 }

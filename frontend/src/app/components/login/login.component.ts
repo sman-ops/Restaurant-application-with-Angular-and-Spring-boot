@@ -35,6 +35,35 @@ export class LoginComponent implements OnInit {
       this.checkoutParentGroup.markAllAsTouched();
       return;
     }
+
+    this.auth
+      .userActive(
+        this.checkoutParentGroup.controls['user'].value.email,
+        this.checkoutParentGroup.controls['user'].value.password
+      )
+      .subscribe({
+        next: (response) => {
+          let ac = response.active;
+          if (ac === 1) {
+            this.auth
+              .executeAuthentication(
+                this.checkoutParentGroup.controls['user'].value.email,
+                this.checkoutParentGroup.controls['user'].value.password
+              )
+              .subscribe({
+                next: (response) => {
+                  // console.log(response);
+                  this.router.navigateByUrl('/orders');
+                },
+              });
+          } else if (ac === 0) {
+            this.router.navigateByUrl('/active');
+          } else {
+            alert('invalid email or pass');
+          }
+        },
+      });
+    /*
     this.auth
       .executeAuthentication(
         this.checkoutParentGroup.controls['user'].value.email,
@@ -49,5 +78,7 @@ export class LoginComponent implements OnInit {
           console.log(err);
         },
       });
+
+      */
   }
 }

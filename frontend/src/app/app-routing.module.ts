@@ -11,10 +11,14 @@ import { RouteActivateService } from './service/activated/route-activate.service
 import { LoginActiveService } from './service/activated/login-active.service';
 import { CodeActivationComponent } from './components/code-activation/code-activation.component';
 import { AccountServiceService } from './service/activated/account-service.service';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 const routes: Routes = [
   // http://localhost:4200/category/2
-
+  {
+    path: 'reset',
+    component: ResetPasswordComponent,
+  },
   {
     path: 'active',
     component: CodeActivationComponent,

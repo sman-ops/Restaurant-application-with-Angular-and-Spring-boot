@@ -17,7 +17,7 @@ import {
 export class ResetPasswordComponent implements OnInit {
   checkoutParentGroup!: FormGroup;
   checkoutParentGroupReset!: FormGroup;
-  enableForm: boolean = true;
+  enableForm: boolean = false;
   constructor(private formChildGroup: FormBuilder) {}
 
   ngOnInit(): void {}

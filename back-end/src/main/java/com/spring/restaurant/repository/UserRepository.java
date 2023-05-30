@@ -21,5 +21,7 @@ public interface UserRepository extends JpaRepository<User,Long> {
 	public String getPasswordByEmail(String email);
 	
 	
+	
+	
 
 }

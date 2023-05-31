@@ -14,6 +14,7 @@ import com.spring.restaurant.dto.ActiveAccount;
 import com.spring.restaurant.dto.JwtLogin;
 import com.spring.restaurant.dto.LoginResponse;
 import com.spring.restaurant.dto.Mail;
+import com.spring.restaurant.dto.NewPassword;
 import com.spring.restaurant.dto.ResetPassword;
 import com.spring.restaurant.dto.UserActive;
 import com.spring.restaurant.model.Code;
@@ -116,19 +117,47 @@ public class UserController {
 	
 	@PostMapping("/checkEmail")
 	public AccountResponse resetPasswordEmail( @RequestBody ResetPassword resetPassword) {
-		String myCode = userCode.getCode();
-		boolean result= this.userService.ifEmailExists(resetPassword.getEmail());
+		
+		User user =this.userService.getUserByEmail(resetPassword.getEmail());
 		AccountResponse accountResponse = new AccountResponse();
-		if(result) {
+		if(user != null) {
+			String myCode = userCode.getCode();
 			Mail mail = new Mail(resetPassword.getEmail(),myCode);
 			emailService.sendCodeByMail(mail);
+			user.getCode().setCode(myCode);
+			this.userService.editUser(user);
 			accountResponse.setResult(1);
-			
 		}else {
 			accountResponse.setResult(0);
 		}
 		return accountResponse;
 		
 	}
+	@PostMapping("/resetPassword")
+  public AccountResponse resetPassword(@RequestBody NewPassword newPassword) {
+		
+		User user =this.userService.getUserByEmail(newPassword.getEmail());
+		AccountResponse accountResponse = new AccountResponse();
+		if(user!=null) {
+			if(user.getCode().getCode().equals(newPassword.getCode())) {
+				user.setPassword(passwordEncoder.encode(newPassword.getPassword()));
+				userService.addUser(user);
+				accountResponse.setResult(1);
+			}else {
+				accountResponse.setResult(0);
+				
+			}
+			
+		}else {
+			accountResponse.setResult(0);
+			
+		}
+		return accountResponse;
+		
+		
+		
+		
+	  
+  }
 
 }

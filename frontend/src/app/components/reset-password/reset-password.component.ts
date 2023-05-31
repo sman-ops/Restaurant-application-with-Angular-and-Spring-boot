@@ -26,7 +26,10 @@ export class ResetPasswordComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.myFormLogin();
+    this.myFormLoginReset();
+  }
 
   myFormLogin() {
     this.checkoutParentGroup = this.formChildGroup.group({

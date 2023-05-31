@@ -91,6 +91,15 @@ public class UserController {
 		UserActive userActive = new UserActive();
 		if(result) {
 			int act = userService.getUserActive(jwtlogin.getEmail());
+			if(act==0) {
+		      String myCode = userCode.getCode();
+		      Mail mail = new Mail(jwtlogin.getEmail(),myCode);
+		      emailService.sendCodeByMail(mail);
+		      User user = userService.getUserByEmail(jwtlogin.getEmail());
+              user.getCode().setCode(myCode);
+              userService.editUser(user);
+		     
+			}
 			userActive.setActive(act);
 			
 		}else {

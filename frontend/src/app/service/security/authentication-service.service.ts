@@ -56,6 +56,32 @@ export class AuthenticationServiceService {
       );
   }
 
+  public checkEmail(email: any): Observable<any> {
+    return this.http
+      .post<any>(`${this.apiServerUrl}/checkEmail`, {
+        email,
+      })
+      .pipe(
+        map((response: any) => {
+          return response;
+        })
+      );
+  }
+
+  public resetPassword(email: any, code: any, password: any): Observable<any> {
+    return this.http
+      .post<any>(`${this.apiServerUrl}/resetPassword`, {
+        email,
+        code,
+        password,
+      })
+      .pipe(
+        map((response: any) => {
+          return response;
+        })
+      );
+  }
+
   // verify if a user is logged in or not
 
   public getAuthentication() {
